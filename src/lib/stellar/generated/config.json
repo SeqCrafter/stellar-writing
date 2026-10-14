@@ -1,0 +1,873 @@
+{
+  "topbar": {
+    "enabled": false,
+    "brand": {
+      "image": {
+        "src": null,
+        "variant": "avatar"
+      },
+      "name": null,
+      "tagline": null,
+      "href": "/"
+    },
+    "menu": [],
+    "widgets": []
+  },
+  "leftbar": {
+    "enabled": true,
+    "defaultState": "expanded",
+    "brand": {
+      "search": true,
+      "style": "regular",
+      "ghrepo": null,
+      "ghuser": null,
+      "image": {
+        "src": null,
+        "variant": "avatar"
+      },
+      "name": null,
+      "tagline": null,
+      "href": "/"
+    },
+    "menuColumns": 1,
+    "menu": [
+      {
+        "id": "post",
+        "title": "menu.blog",
+        "icon": "default:documents",
+        "url": "/",
+        "accent": null
+      },
+      {
+        "id": "categories",
+        "title": "menu.categories",
+        "icon": "default:category",
+        "url": "/blog/categories/",
+        "accent": null
+      },
+      {
+        "id": "tags",
+        "title": "menu.tags",
+        "icon": "default:hashtag",
+        "url": "/blog/tags/",
+        "accent": null
+      },
+      {
+        "id": "topic",
+        "title": "menu.topic",
+        "icon": "default:pin",
+        "url": "/topic/",
+        "accent": null
+      },
+      {
+        "id": "archives",
+        "title": "menu.archives",
+        "icon": "default:calendar",
+        "url": "/blog/archives/",
+        "accent": null
+      },
+      {
+        "id": "friends",
+        "title": "menu.friends",
+        "icon": "default:link",
+        "url": "/friends/",
+        "accent": null
+      },
+      {
+        "id": "about",
+        "title": "menu.about",
+        "icon": "default:profile",
+        "url": "/about/",
+        "accent": null
+      }
+    ],
+    "widgets": [],
+    "footer": {
+      "actions": []
+    }
+  },
+  "rightbar": {
+    "enabled": true,
+    "widgets": []
+  },
+  "footer": {
+    "sitemap": [],
+    "content": "本站由 [{author.name}](/) 使用 [{theme.name} {theme.version}]({theme.tree}) 主题创建。\n本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处。\n"
+  },
+  "profiles": {
+    "home": {
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "comments": {
+        "enabled": false,
+        "title": null,
+        "id": null,
+        "provider": null,
+        "options": {}
+      },
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "blogIndex": {
+      "path": "/blog/",
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "listingNav": {
+        "enabled": true,
+        "tabs": []
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "post": {
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "related",
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [
+          "ghrepo",
+          "toc"
+        ],
+        "enabled": null
+      },
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "topic": {
+      "path": "/topic/",
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "related",
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [
+          "ghrepo",
+          "toc"
+        ],
+        "enabled": null
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "wikiIndex": {
+      "path": "/wiki/",
+      "activeMenu": null,
+      "leftbar": {
+        "widgets": [
+          "related",
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "listingNav": {
+        "enabled": true,
+        "tabs": []
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "wiki": {
+      "activeMenu": null,
+      "leftbar": {
+        "menu": [],
+        "widgets": [
+          "tree",
+          "related"
+        ],
+        "footer": {
+          "actions": []
+        },
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null
+      },
+      "rightbar": {
+        "widgets": [
+          "ghrepo",
+          "toc"
+        ],
+        "enabled": null
+      },
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "notebook": {
+      "activeMenu": null,
+      "leftbar": {
+        "widgets": [
+          "tagtree",
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "listing": {
+        "perPage": null,
+        "sort": {
+          "field": "updated",
+          "direction": "desc"
+        },
+        "excerptLength": 128
+      },
+      "tagIcons": {},
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "notebooks": {
+      "path": "/notebooks/",
+      "activeMenu": null,
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "note": {
+      "activeMenu": null,
+      "leftbar": {
+        "widgets": [
+          "tagtree",
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [
+          "toc"
+        ],
+        "enabled": null
+      },
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "author": {
+      "path": "/author/",
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "page": {
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [
+          "toc"
+        ],
+        "enabled": null
+      },
+      "path": null,
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "settings": {
+      "path": "/settings/",
+      "about": {
+        "items": [
+          {
+            "key": "博客框架",
+            "value": "Hexo {hexo.version}",
+            "url": "https://hexo.io/"
+          },
+          {
+            "key": "主题版本",
+            "value": "Stellar {theme.version}",
+            "url": "{theme.tree}"
+          }
+        ]
+      },
+      "activeMenu": null,
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    },
+    "error": {
+      "path": "/404.html",
+      "image": "https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/404/1c830bfcd517d.svg",
+      "comments": {
+        "enabled": false,
+        "title": null,
+        "id": null,
+        "provider": null,
+        "options": {}
+      },
+      "activeMenu": "post",
+      "leftbar": {
+        "widgets": [
+          "recent"
+        ],
+        "enabled": null,
+        "brand": null,
+        "menuColumns": null,
+        "menu": null,
+        "footer": {
+          "actions": null
+        }
+      },
+      "rightbar": {
+        "widgets": [],
+        "enabled": null
+      },
+      "topbar": {
+        "enabled": null,
+        "brand": null,
+        "menu": null,
+        "widgets": null
+      }
+    }
+  },
+  "article": {
+    "style": "tech",
+    "paragraphIndent": "auto",
+    "banner": {
+      "background": true
+    },
+    "listing": {
+      "pinnedLayout": "carousel",
+      "cardLayout": "hero",
+      "coverRatio": 2,
+      "excerptLength": 128,
+      "showTags": false
+    },
+    "categoryColors": {
+      "探索号": "#f44336"
+    },
+    "showReadingTime": false,
+    "relatedPostsLimit": 0,
+    "footer": {
+      "license": "本文采用 [署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处。",
+      "share": [
+        "qrcode",
+        "weibo",
+        "x",
+        "telegram",
+        "whatsapp",
+        "email"
+      ],
+      "showTags": true
+    }
+  },
+  "appearance": {
+    "preset": "card",
+    "colorScheme": "auto",
+    "colors": {
+      "primary": "hsl(192 98% 55%)",
+      "accent": "hsl(14 100% 57%)",
+      "link": "hsl(207 90% 54%)"
+    },
+    "gradients": {
+      "primaryAction": "linear-gradient(to right, hsl(215, 95%, 64%), hsl(195, 95%, 60%), hsl(165, 95%, 56%), hsl(165, 95%, 56%), hsl(195 95% 60%), hsl(215, 95%, 64%))",
+      "searchBar": "linear-gradient(to right, #04f3ff, #08ffc6, #ddf730, #ffbd19, #ff1fe0, #c418ff, #3b5bff, #04f3ff)"
+    },
+    "typography": {
+      "fontSmoothing": "antialiased",
+      "fontWeight": {
+        "100": 100,
+        "200": 200,
+        "300": 300,
+        "400": 400,
+        "500": 500,
+        "600": 600,
+        "700": 700,
+        "800": 800,
+        "900": 900
+      },
+      "fontFamily": {
+        "body": "\"LXGW WenKai Screen\", \"LXGW WenKai\", system-ui, \"Microsoft Yahei\", \"Segoe UI\", Arial, sans-serif",
+        "code": "\"Google Sans Code\", \"LXGW WenKai Screen\", Menlo, Monaco, Consolas, monospace"
+      },
+      "fontSize": {
+        "root": "16px",
+        "inlineCode": "85%",
+        "codeBlock": "0.8125rem"
+      },
+      "contentAlign": "left"
+    },
+    "shape": {
+      "corner": "superellipse(1.25)",
+      "radius": {
+        "cardLarge": "24px",
+        "card": "16px",
+        "cardSmall": "12px",
+        "bar": "12px",
+        "imageLarge": "24px",
+        "image": "16px",
+        "imageSmall": "8px"
+      }
+    },
+    "backgrounds": {
+      "leftbar": {
+        "type": "gradient",
+        "image": null,
+        "gradient": {
+          "light": [
+            "hsl(210 32% 84%)",
+            "hsl(188 44% 84%)",
+            "hsl(12 64% 73%)",
+            "hsl(35 100% 82%)"
+          ],
+          "dark": [
+            "hsl(210 16% 48%)",
+            "hsl(188 18% 50%)",
+            "hsl(12 30% 42%)",
+            "hsl(35 36% 49%)"
+          ]
+        },
+        "opacity": 1,
+        "backdrop": {
+          "radius": "100px"
+        }
+      },
+      "page": {
+        "image": null,
+        "backdrop": {
+          "radius": "100px",
+          "overlay": "var(--bg-a75)",
+          "saturation": "300%"
+        }
+      }
+    },
+    "codeBlock": {
+      "scrollbarWidth": "4px",
+      "highlightStylesheet": "https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9/build/styles/atom-one-dark.min.css"
+    }
+  },
+  "search": {
+    "provider": "local",
+    "local": {
+      "scope": "all",
+      "includeContent": true,
+      "cacheTtlSeconds": 86400
+    },
+    "algolia": {
+      "js": "https://gcore.jsdelivr.net/algoliasearch/3/algoliasearch.min.js",
+      "appId": null,
+      "apiKey": null,
+      "indexName": null
+    }
+  },
+  "comments": {
+    "provider": null,
+    "title": null,
+    "beaudar": {
+      "js": "https://beaudar.lipk.org/client.js",
+      "repo": "xxx/xxx",
+      "issue-term": "pathname",
+      "issue-number": null,
+      "theme": "preferred-color-scheme",
+      "label": null,
+      "input-position": "top",
+      "comment-order": "desc",
+      "keep-theme": null,
+      "loading": false,
+      "branch": "main"
+    },
+    "utterances": {
+      "js": "https://utteranc.es/client.js",
+      "repo": "xxx/xxx",
+      "issue-term": "pathname",
+      "issue-number": null,
+      "theme": "preferred-color-scheme",
+      "label": null
+    },
+    "giscus": {
+      "js": "https://giscus.app/client.js",
+      "data-repo": "xxx/xxx",
+      "data-repo-id": null,
+      "data-category": null,
+      "data-category-id": null,
+      "data-mapping": "pathname",
+      "data-strict": 0,
+      "data-reactions-enabled": 1,
+      "data-emit-metadata": 0,
+      "data-input-position": "top",
+      "data-theme": "preferred_color_scheme",
+      "data-lang": "zh-CN",
+      "data-loading": null,
+      "crossorigin": "anonymous"
+    },
+    "twikoo": {
+      "js": "https://gcore.jsdelivr.net/npm/twikoo@1.6/dist/twikoo.all.min.js",
+      "envId": "https://xxx"
+    },
+    "waline": {
+      "js": "https://gcore.jsdelivr.net/npm/@waline/client@3.15.2/dist/waline.js",
+      "css": "https://gcore.jsdelivr.net/npm/@waline/client@3.15.2/dist/waline.css",
+      "meta_css": "https://gcore.jsdelivr.net/npm/@waline/client@3.15.2/dist/waline-meta.css",
+      "serverURL": "https://waline.vercel.app",
+      "commentCount": true,
+      "pageview": false
+    },
+    "artalk": {
+      "js": null,
+      "css": null,
+      "server": null,
+      "site": "",
+      "darkMode": "auto",
+      "imageUploader": null
+    }
+  },
+  "tags": {
+    "note": {
+      "defaultColor": "",
+      "border": true
+    },
+    "checkbox": {
+      "interactive": false
+    },
+    "quot": {
+      "default": {
+        "prefix": "quot:quote-left",
+        "suffix": "quot:quote-right"
+      },
+      "hashtag": {
+        "prefix": "quot:hashtag",
+        "suffix": null
+      },
+      "question": {
+        "prefix": "quot:question",
+        "suffix": null
+      }
+    },
+    "emoji": {
+      "defaultSource": "blobcat",
+      "sources": {
+        "twemoji": "https://gcore.jsdelivr.net/gh/twitter/twemoji/assets/svg/{name}.svg",
+        "qq": "https://gcore.jsdelivr.net/gh/cdn-x/emoticons@3.1/qq/{name}.gif",
+        "aru": "https://gcore.jsdelivr.net/gh/cdn-x/emoticons@3.1/aru/{name}.gif",
+        "tieba": "https://gcore.jsdelivr.net/gh/cdn-x/emoticons@3.1/tieba/{name}.png",
+        "blobcat": "https://gcore.jsdelivr.net/gh/cdn-x/emoticons@3.1/blobcat/{name}.gif"
+      }
+    },
+    "icon": {
+      "defaultColor": "accent"
+    },
+    "button": {
+      "defaultColor": "theme"
+    },
+    "mark": {
+      "defaultColor": "theme"
+    },
+    "hashtag": {
+      "defaultColor": null
+    },
+    "gallery": {
+      "size": "mix",
+      "aspectRatio": "square"
+    }
+  },
+  "features": {
+    "partialNavigation": {
+      "enabled": true
+    },
+    "swiper": {
+      "js": "https://unpkg.com/swiper@10.3/swiper-bundle.min.js",
+      "css": "https://unpkg.com/swiper@10.3/swiper-bundle.min.css"
+    },
+    "colorSchemeSwitch": {
+      "enabled": false
+    },
+    "imageOptimization": {
+      "enabled": true
+    },
+    "lazyLoading": {
+      "js": "https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js",
+      "transition": "fade",
+      "autoAspectRatio": true
+    },
+    "lightbox": {
+      "js": "https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js",
+      "css": "https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css",
+      "enabled": true,
+      "selector": ".timenode p>img"
+    },
+    "linkPrefetch": {
+      "js": "https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js",
+      "enabled": true
+    },
+    "reveal": {
+      "enabled": true,
+      "duration": 800,
+      "interval": 200,
+      "distance": 8,
+      "blur": 4
+    },
+    "cardHover": {
+      "spotlight": false,
+      "tilt": false
+    },
+    "heti": {
+      "js": "https://unpkg.com/heti@0.9/umd/heti-addon.min.js",
+      "css": "https://unpkg.com/heti@0.9/umd/heti.min.css",
+      "enabled": false
+    },
+    "math": {
+      "provider": null,
+      "katex": {
+        "css": "https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css",
+        "css_integrity": "sha384-//SZkxyB7axjCAopkAL1E1rve+ZSPKapD89Lo/lLhcsXR+zOYl5z6zJZEFXil+q0"
+      },
+      "mathjax": {
+        "js": "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"
+      }
+    },
+    "diagrams": {
+      "provider": null,
+      "mermaid": {
+        "js": "https://gcore.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js",
+        "theme": "neutral"
+      }
+    }
+  },
+  "services": {
+    "gravatar": {
+      "baseUrl": "https://gravatar.com/avatar/"
+    },
+    "markdown": {
+      "js": "https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js"
+    },
+    "siteInfo": {
+      "provider": "site_info_api",
+      "site_info_api": {
+        "endpoint": null
+      }
+    },
+    "rating": {
+      "provider": "star_vote",
+      "star_vote": {
+        "endpoint": null
+      }
+    },
+    "vote": {
+      "provider": "star_vote",
+      "star_vote": {
+        "endpoint": null
+      }
+    },
+    "contributors": {
+      "provider": "github",
+      "github": {
+        "repositories": []
+      }
+    },
+    "githubCard": {
+      "provider": "github_readme_stats",
+      "github_readme_stats": {
+        "endpoint": "https://github-stats-extended.vercel.app"
+      }
+    },
+    "github": {
+      "apiUrl": "https://api.github.com",
+      "rawUrl": "https://raw.githubusercontent.com",
+      "gistUrl": "https://gist.github.com"
+    }
+  },
+  "preconnect": [],
+  "fallbacks": {
+    "avatar": "https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg",
+    "linkCard": "https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg",
+    "cover": "https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"
+  },
+  "canonical": {
+    "host": null,
+    "allowedHosts": [
+      "localhost"
+    ]
+  },
+  "openGraph": {
+    "enabled": true,
+    "twitterId": null
+  },
+  "structuredData": {
+    "sameAs": []
+  },
+  "inject": {
+    "headBegin": "",
+    "headEnd": "",
+    "bodyBegin": "",
+    "bodyEnd": ""
+  }
+}

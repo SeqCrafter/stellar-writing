@@ -1,0 +1,614 @@
+{
+  "en": {
+    "btn": {
+      "home": "Home",
+      "blog": "Blog",
+      "wiki": "Wiki",
+      "topic": "Topic",
+      "notebook": "Notebook",
+      "recent_publish": "Recent",
+      "all_wiki": "All Products",
+      "all_topic": "All Topics",
+      "all_notebook": "All Notebooks",
+      "category": "Category",
+      "categories": "Categories",
+      "tag": "Tag",
+      "tags": "Tags",
+      "archives": "Archives",
+      "all_posts": "All Posts",
+      "getting_started": "Getting Started",
+      "docs": "Documentation",
+      "source": "Source",
+      "copy": "Copy",
+      "edit": "Edit This Page",
+      "top": "Scroll to Top",
+      "comments": "Join Discussion",
+      "expand_posts": "Show %s more posts",
+      "collapse_posts": "Collapse",
+      "search": "Search"
+    },
+    "menu": {
+      "blog": "Blog",
+      "categories": "Categories",
+      "tags": "Tags",
+      "topic": "Topic",
+      "archives": "Archives",
+      "friends": "Friends",
+      "about": "About"
+    },
+    "meta": {
+      "recent_update": "Recent Update",
+      "tag_tree": "Tags",
+      "all_notes": "All Notes",
+      "toc": "On This Page",
+      "read_next": "READ NEXT",
+      "prev": "Prev",
+      "next": "Next",
+      "older": "Older",
+      "newer": "Newer",
+      "references": "References",
+      "related_posts": "Related Posts",
+      "back_to_top": "Back to top",
+      "more": "More",
+      "created_author": "%s posted on",
+      "created": "Posted on",
+      "updated": "Updated on",
+      "license": "License",
+      "share": "Share",
+      "contributors": "Page Contributors",
+      "available": "Available for",
+      "wiki_project": "Wiki project",
+      "project_preview": "Project preview",
+      "install_method": "Installation method",
+      "command": "Command %s",
+      "word_count": "%s words",
+      "reading_time": "%s min read",
+      "ai_label": {
+        "manual": "Written entirely by a human",
+        "reviewed": "AI-reviewed",
+        "polished": "AI-polished",
+        "generated": "AI-generated"
+      },
+      "date_suffix": {
+        "just": "Just",
+        "min": "minutes ago",
+        "hour": "hours ago",
+        "day": "days ago",
+        "month": "months ago"
+      }
+    },
+    "page": {
+      "error": {
+        "what": "Page Not Found",
+        "why": "The address may be entered incorrectly or the address has been deleted.",
+        "action": "Back to Home"
+      }
+    },
+    "search": {
+      "search": "Search",
+      "scope_all": "All",
+      "scope_blog": "Blog",
+      "no_results": "No Results!",
+      "no_more": "No more results",
+      "close": "Close search"
+    },
+    "settings": {
+      "label": "Settings",
+      "title": "Settings",
+      "profile": {
+        "title": "Profile",
+        "avatar": "Avatar",
+        "nickname": "Nickname",
+        "email": "Email",
+        "url": "URL",
+        "save": "Save",
+        "logout": "Log out"
+      },
+      "cache": {
+        "title": "Cache",
+        "search": "Search cache",
+        "dynamic": "Data cache",
+        "all": "All caches",
+        "clear": "Clear %s"
+      },
+      "about": {
+        "title": "About",
+        "empty": "No information configured.",
+        "open_link": "Open link for %s"
+      },
+      "result": {
+        "success": "Done.",
+        "partial": "Partially completed. Some browser storage could not be changed.",
+        "failure": "Failed. Browser storage is unavailable."
+      },
+      "validation": {
+        "name": "Enter a nickname of up to 80 characters.",
+        "email": "Enter a valid email address or leave it blank.",
+        "url": "Enter an HTTP(S) URL or leave it blank."
+      }
+    },
+    "message": {
+      "copied": "Copied!",
+      "copy_denied": "Clipboard permission was denied",
+      "copy_unsupported": "Clipboard requires a supported browser and HTTPS",
+      "fetching_latest_release": "%s is fetching the latest release…",
+      "loading": "Loading",
+      "loading_failed": "Failed to load. Please try again later.",
+      "color_scheme_switched": {
+        "light": "Switched to Light Mode",
+        "dark": "Switched to Dark Mode",
+        "auto": "Switched to Auto Mode"
+      }
+    },
+    "symbol": {
+      "comma": ", ",
+      "period": ". ",
+      "colon": ": ",
+      "brackets_l": "(",
+      "brackets_r": ")",
+      "page": "Page %s"
+    },
+    "tag_plugins": {
+      "okr": {
+        "status": {
+          "in_track": "On Track",
+          "at_risk": "At Risk",
+          "off_track": "Delayed",
+          "finished": "Completed",
+          "unfinished": "Incomplete"
+        }
+      },
+      "mbti": {
+        "title": "My MBTI Type: %s (%s)",
+        "types": {
+          "INTJ": "Architect",
+          "INTP": "Logician",
+          "ENTJ": "Commander",
+          "ENTP": "Debater",
+          "INFJ": "Advocate",
+          "INFP": "Mediator",
+          "ENFJ": "Protagonist",
+          "ENFP": "Campaigner",
+          "ISTJ": "Logistician",
+          "ISFJ": "Defender",
+          "ESTJ": "Executive",
+          "ESFJ": "Consul",
+          "ISTP": "Virtuoso",
+          "ISFP": "Adventurer",
+          "ESTP": "Entrepreneur",
+          "ESFP": "Entertainer"
+        },
+        "traits": {
+          "energy": {
+            "left": "Extraverted",
+            "right": "Introverted"
+          },
+          "mind": {
+            "left": "Intuitive",
+            "right": "Observant"
+          },
+          "nature": {
+            "left": "Thinking",
+            "right": "Feeling"
+          },
+          "tactics": {
+            "left": "Judging",
+            "right": "Prospecting"
+          },
+          "identity": {
+            "left": "Assertive",
+            "right": "Turbulent"
+          }
+        }
+      }
+    }
+  },
+  "zh-TW": {
+    "btn": {
+      "home": "首頁",
+      "blog": "網誌",
+      "wiki": "文檔",
+      "topic": "專欄",
+      "notebook": "筆記本",
+      "recent_publish": "近期發布",
+      "all_wiki": "所有文檔",
+      "all_topic": "所有專欄",
+      "all_notebook": "所有筆記本",
+      "category": "分類",
+      "categories": "分類",
+      "tag": "標籤",
+      "tags": "標籤",
+      "archives": "封存",
+      "all_posts": "所有網誌",
+      "getting_started": "開始使用",
+      "docs": "文件",
+      "source": "原始碼",
+      "copy": "複製",
+      "edit": "編輯本文",
+      "top": "回到頂部",
+      "comments": "參與討論",
+      "expand_posts": "展開其餘 %s 篇",
+      "collapse_posts": "收起",
+      "search": "搜尋"
+    },
+    "menu": {
+      "blog": "網誌",
+      "categories": "分類",
+      "tags": "標籤",
+      "topic": "專欄",
+      "archives": "封存",
+      "friends": "友鏈",
+      "about": "關於"
+    },
+    "meta": {
+      "recent_update": "最近更新",
+      "tag_tree": "標籤",
+      "all_notes": "所有筆記",
+      "toc": "本文目錄",
+      "read_next": "接下來閱讀",
+      "prev": "回顧上一篇",
+      "next": "接下來閱讀",
+      "older": "較早文章",
+      "newer": "較新文章",
+      "references": "參考資料",
+      "related_posts": "您可能感興趣的文章",
+      "back_to_top": "回到頁首",
+      "more": "更多",
+      "created_author": "本文由 %s 發布於",
+      "created": "發布於",
+      "updated": "更新於",
+      "license": "授權條款",
+      "share": "分享文章",
+      "contributors": "本文貢獻者",
+      "available": "適用於",
+      "wiki_project": "Wiki 專案",
+      "project_preview": "專案預覽",
+      "install_method": "安裝方式",
+      "command": "指令 %s",
+      "word_count": "%s 字",
+      "reading_time": "預計閱讀 %s 分鐘",
+      "ai_label": {
+        "manual": "本文完全由人類完成",
+        "reviewed": "已 AI 審核",
+        "polished": "已 AI 潤飾",
+        "generated": "由 AI 生成"
+      },
+      "date_suffix": {
+        "just": "剛剛",
+        "min": "分鐘前",
+        "hour": "小時前",
+        "day": "天前",
+        "month": "個月前"
+      }
+    },
+    "page": {
+      "error": {
+        "what": "抱歉，找不到您存取的頁面",
+        "why": "可能是網址有誤或已經刪除",
+        "action": "返回首頁"
+      }
+    },
+    "search": {
+      "search": "站內搜尋",
+      "scope_all": "全站",
+      "scope_blog": "部落格",
+      "no_results": "沒有找到內容！",
+      "no_more": "沒有更多了",
+      "close": "關閉搜尋"
+    },
+    "settings": {
+      "label": "設定",
+      "title": "設定",
+      "profile": {
+        "title": "個人資料",
+        "avatar": "頭像",
+        "nickname": "暱稱",
+        "email": "Email",
+        "url": "URL",
+        "save": "儲存",
+        "logout": "登出"
+      },
+      "cache": {
+        "title": "快取",
+        "search": "搜尋快取",
+        "dynamic": "資料快取",
+        "all": "全部快取",
+        "clear": "清除「%s」"
+      },
+      "about": {
+        "title": "關於",
+        "empty": "尚未設定相關資訊。",
+        "open_link": "開啟「%s」連結"
+      },
+      "result": {
+        "success": "操作成功。",
+        "partial": "操作部分完成，部分瀏覽器儲存空間無法修改。",
+        "failure": "操作失敗，瀏覽器儲存空間無法使用。"
+      },
+      "validation": {
+        "name": "請輸入不超過 80 個字元的暱稱。",
+        "email": "請輸入有效的 Email，或留空。",
+        "url": "請輸入 HTTP(S) URL，或留空。"
+      }
+    },
+    "message": {
+      "copied": "複製成功",
+      "copy_denied": "未取得剪貼簿權限",
+      "copy_unsupported": "目前瀏覽器不支援剪貼簿或頁面不是 HTTPS",
+      "fetching_latest_release": "%s 正在取得最新版本…",
+      "loading": "正在載入",
+      "loading_failed": "載入失敗，請稍後再試。",
+      "color_scheme_switched": {
+        "light": "切換到淺色模式",
+        "dark": "切換到深色模式",
+        "auto": "切換到跟隨系統配色"
+      }
+    },
+    "symbol": {
+      "comma": "，",
+      "period": "。",
+      "colon": "：",
+      "brackets_l": "（",
+      "brackets_r": "）",
+      "page": "第 %s 頁"
+    },
+    "tag_plugins": {
+      "okr": {
+        "status": {
+          "in_track": "正常",
+          "at_risk": "風險",
+          "off_track": "延期",
+          "finished": "已完成",
+          "unfinished": "未完成"
+        }
+      },
+      "mbti": {
+        "title": "我的 MBTI 人格：%s（%s）",
+        "types": {
+          "INTJ": "架構師",
+          "INTP": "邏輯學家",
+          "ENTJ": "指揮官",
+          "ENTP": "辯論家",
+          "INFJ": "提倡者",
+          "INFP": "調停者",
+          "ENFJ": "主人公",
+          "ENFP": "活動家",
+          "ISTJ": "物流師",
+          "ISFJ": "守衛者",
+          "ESTJ": "管理者",
+          "ESFJ": "執政官",
+          "ISTP": "鑑賞家",
+          "ISFP": "冒險家",
+          "ESTP": "企業家",
+          "ESFP": "表演者"
+        },
+        "traits": {
+          "energy": {
+            "left": "外向",
+            "right": "內向"
+          },
+          "mind": {
+            "left": "天馬行空",
+            "right": "求真務實"
+          },
+          "nature": {
+            "left": "理性思考",
+            "right": "情感細膩"
+          },
+          "tactics": {
+            "left": "運籌帷幄",
+            "right": "隨機應變"
+          },
+          "identity": {
+            "left": "自信果斷",
+            "right": "情緒易波動"
+          }
+        }
+      }
+    }
+  },
+  "zh-CN": {
+    "btn": {
+      "home": "主页",
+      "blog": "文章",
+      "wiki": "文档",
+      "topic": "专栏",
+      "notebook": "笔记本",
+      "recent_publish": "近期发布",
+      "all_wiki": "所有项目",
+      "all_topic": "所有专栏",
+      "all_notebook": "所有笔记本",
+      "category": "分类",
+      "categories": "分类",
+      "tag": "标签",
+      "tags": "标签",
+      "archives": "归档",
+      "all_posts": "所有文章",
+      "getting_started": "开始使用",
+      "docs": "文档",
+      "source": "源码",
+      "copy": "复制",
+      "edit": "编辑本文",
+      "top": "回到顶部",
+      "comments": "参与讨论",
+      "expand_posts": "展开其余 %s 篇",
+      "collapse_posts": "收起",
+      "search": "搜索"
+    },
+    "menu": {
+      "blog": "博客",
+      "categories": "分类",
+      "tags": "标签",
+      "topic": "专栏",
+      "archives": "归档",
+      "friends": "友链",
+      "about": "关于"
+    },
+    "meta": {
+      "recent_update": "最近更新",
+      "tag_tree": "标签",
+      "all_notes": "所有笔记",
+      "toc": "本文目录",
+      "read_next": "接下来阅读",
+      "prev": "回顾上一篇",
+      "next": "接下来阅读",
+      "older": "较早文章",
+      "newer": "较新文章",
+      "references": "参考资料",
+      "related_posts": "您可能感兴趣的文章",
+      "back_to_top": "回到顶部",
+      "more": "更多",
+      "created_author": "本文由 %s 发布于",
+      "created": "发布于",
+      "updated": "更新于",
+      "license": "许可协议",
+      "share": "分享文章",
+      "contributors": "本文贡献者",
+      "available": "适用于",
+      "wiki_project": "Wiki 项目",
+      "project_preview": "项目预览",
+      "install_method": "安装方式",
+      "command": "命令 %s",
+      "word_count": "%s 字",
+      "reading_time": "预计阅读 %s 分钟",
+      "ai_label": {
+        "manual": "本文完全由人类完成",
+        "reviewed": "已 AI 审核",
+        "polished": "已 AI 润色",
+        "generated": "由 AI 生成"
+      },
+      "date_suffix": {
+        "just": "刚刚",
+        "min": "分钟前",
+        "hour": "小时前",
+        "day": "天前",
+        "month": "个月前"
+      }
+    },
+    "page": {
+      "error": {
+        "what": "很抱歉，您访问的页面不存在",
+        "why": "可能是输入地址有误或该地址已被删除",
+        "action": "返回主页"
+      }
+    },
+    "search": {
+      "search": "站内搜索",
+      "scope_all": "全站",
+      "scope_blog": "博客",
+      "no_results": "没有找到内容！",
+      "no_more": "没有更多了",
+      "close": "关闭搜索"
+    },
+    "settings": {
+      "label": "设置",
+      "title": "设置",
+      "profile": {
+        "title": "个人资料",
+        "avatar": "头像",
+        "nickname": "昵称",
+        "email": "Email",
+        "url": "URL",
+        "save": "保存",
+        "logout": "退出登录"
+      },
+      "cache": {
+        "title": "缓存",
+        "search": "搜索缓存",
+        "dynamic": "数据缓存",
+        "all": "全部缓存",
+        "clear": "清除「%s」"
+      },
+      "about": {
+        "title": "关于",
+        "empty": "暂未配置相关信息。",
+        "open_link": "打开「%s」链接"
+      },
+      "result": {
+        "success": "操作成功。",
+        "partial": "操作部分完成，部分浏览器存储无法修改。",
+        "failure": "操作失败，浏览器存储不可用。"
+      },
+      "validation": {
+        "name": "请输入不超过 80 个字符的昵称。",
+        "email": "请输入有效的 Email，或留空。",
+        "url": "请输入 HTTP(S) URL，或留空。"
+      }
+    },
+    "message": {
+      "copied": "复制成功",
+      "copy_denied": "未获得剪贴板权限",
+      "copy_unsupported": "当前浏览器不支持剪贴板或页面不是 HTTPS",
+      "fetching_latest_release": "%s 正在获取最新版本…",
+      "loading": "正在加载",
+      "loading_failed": "加载失败，请稍后重试。",
+      "color_scheme_switched": {
+        "light": "切换到浅色模式",
+        "dark": "切换到深色模式",
+        "auto": "切换到跟随系统配色"
+      }
+    },
+    "symbol": {
+      "comma": "，",
+      "period": "。",
+      "colon": "：",
+      "brackets_l": "（",
+      "brackets_r": "）",
+      "page": "第 %s 页"
+    },
+    "tag_plugins": {
+      "okr": {
+        "status": {
+          "in_track": "正常",
+          "at_risk": "风险",
+          "off_track": "延期",
+          "finished": "已完成",
+          "unfinished": "未完成"
+        }
+      },
+      "mbti": {
+        "title": "我的 MBTI 人格：%s（%s）",
+        "types": {
+          "INTJ": "架构师",
+          "INTP": "逻辑学家",
+          "ENTJ": "指挥官",
+          "ENTP": "辩论家",
+          "INFJ": "提倡者",
+          "INFP": "调停者",
+          "ENFJ": "主人公",
+          "ENFP": "活动家",
+          "ISTJ": "物流师",
+          "ISFJ": "守卫者",
+          "ESTJ": "管理者",
+          "ESFJ": "执政官",
+          "ISTP": "鉴赏家",
+          "ISFP": "冒险家",
+          "ESTP": "企业家",
+          "ESFP": "表演者"
+        },
+        "traits": {
+          "energy": {
+            "left": "外向",
+            "right": "内向"
+          },
+          "mind": {
+            "left": "天马行空",
+            "right": "求真务实"
+          },
+          "nature": {
+            "left": "理性思考",
+            "right": "情感细腻"
+          },
+          "tactics": {
+            "left": "运筹帷幄",
+            "right": "随机应变"
+          },
+          "identity": {
+            "left": "自信果断",
+            "right": "情绪易波动"
+          }
+        }
+      }
+    }
+  }
+}

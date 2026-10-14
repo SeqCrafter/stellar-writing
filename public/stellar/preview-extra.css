@@ -1,0 +1,36 @@
+/* 预览专用补充样式：只作用于编辑器预览，不属于 Stellar 主题 */
+html { scrollbar-gutter: stable; }
+body { min-height: 100vh; }
+.site-shell { min-height: 100vh; }
+.site-main { padding-bottom: 30vh; }
+
+.sw-tag-error {
+  display: inline-block;
+  margin: 2px 0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font: 500 13px/1.6 ui-monospace, Menlo, monospace;
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px dashed #fda29b;
+}
+:root[data-theme="dark"] .sw-tag-error { color: #fda29b; background: #3a1714; border-color: #7a271a; }
+
+.sw-ds-hint {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-p2, #888);
+  background: var(--block, rgba(0,0,0,.04));
+  border: 1px dashed var(--block-border, rgba(0,0,0,.12));
+}
+
+.sw-toast {
+  position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
+  padding: 8px 16px; border-radius: 999px; font-size: 14px;
+  color: #fff; background: rgba(20, 24, 28, .86);
+  animation: sw-toast-in .2s ease-out; transition: opacity .3s, transform .3s;
+}
+.sw-toast.out { opacity: 0; transform: translate(-50%, 6px); }
+@keyframes sw-toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }

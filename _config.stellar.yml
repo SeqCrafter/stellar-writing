@@ -1,0 +1,9 @@
+# 预览使用的 Stellar 站点配置覆盖，与博客根目录的 _config.stellar.yml 写法相同。
+# 修改后运行 `bun run sync:stellar` 重新生成预览样式。
+# 想让预览与博客完全一致，可以把博客里的 _config.stellar.yml 内容复制到这里。
+appearance:
+  typography:
+    font_family:
+      # 字体文件由预览页加载，见 src/components/editor/PreviewFrame.tsx 的 FONT_STYLESHEETS
+      body: '"LXGW WenKai Screen", "LXGW WenKai", system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif'
+      code: '"Google Sans Code", "LXGW WenKai Screen", Menlo, Monaco, Consolas, monospace'
