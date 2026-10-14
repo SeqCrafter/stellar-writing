@@ -1,13 +1,10 @@
 name: Docker 镜像
 
-# 推送到默认分支或打 v* 标签时，构建 stellar-writing 镜像并发布到 GitHub Container Registry
+# 推送到默认分支或打 v* 标签时，构建镜像并发布到 GitHub Container Registry（仓库根目录即项目根目录）
 on:
   push:
     branches: [main, master]
     tags: ['v*']
-    paths:
-      - 'stellar-writing/**'
-      - '.github/workflows/docker.yml'
   workflow_dispatch:
 
 permissions:
@@ -51,7 +48,7 @@ jobs:
       - name: 构建并推送
         uses: docker/build-push-action@v6
         with:
-          context: ./stellar-writing
+          context: .
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}

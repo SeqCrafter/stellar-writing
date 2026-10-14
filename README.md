@@ -51,7 +51,7 @@ bun run sync:stellar
 
 ## Docker 部署
 
-推送到 GitHub 的 `main`/`master` 分支（或打 `v*` 标签）后，`.github/workflows/docker.yml` 会构建镜像并发布到 GitHub Container Registry，标签为 `latest`、提交短 SHA，以及版本标签对应的 `x.y.z`、`x.y`。镜像同时提供 amd64 与 arm64。
+推送到 GitHub 的 `main`/`master` 分支（或打 `v*` 标签）后，仓库里的 `.github/workflows/docker.yml` 会构建镜像并发布到 GitHub Container Registry，标签为 `latest`、提交短 SHA，以及版本标签对应的 `x.y.z`、`x.y`。镜像同时提供 amd64 与 arm64。
 
 ```bash
 docker run -d --name stellar-writing -p 3000:3000 ghcr.io/<你的 GitHub 用户名>/<仓库名>:latest
