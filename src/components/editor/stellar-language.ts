@@ -1,6 +1,6 @@
 // CodeMirror 扩展：Stellar 标签的语法着色、{% 自动补全、主题。
 import { autocompletion, snippetCompletion, type CompletionContext, type CompletionResult } from '@codemirror/autocomplete'
-import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
+import { HighlightStyle, syntaxHighlighting, syntaxTree } from '@codemirror/language'
 import { RangeSetBuilder, type Extension } from '@codemirror/state'
 import { Decoration, EditorView, ViewPlugin, type DecorationSet, type ViewUpdate } from '@codemirror/view'
 import { tags as t } from '@lezer/highlight'
@@ -12,6 +12,14 @@ const tagNameMark = Decoration.mark({ class: 'cm-st-name' })
 const tagKeyMark = Decoration.mark({ class: 'cm-st-key' })
 const commentMark = Decoration.mark({ class: 'cm-st-split' })
 
+// 行内代码与代码块里的 {% %} 只是代码文本，不按标签着色
+function inCode(view: EditorView, pos: number) {
+  for (let node: { name: string; parent: unknown } | null = syntaxTree(view.state).resolveInner(pos, 1); node; node = node.parent as typeof node) {
+    if (/^(InlineCode|FencedCode|CodeBlock|CodeText)$/.test(node.name)) return true
+  }
+  return false
+}
+
 function buildDecorations(view: EditorView): DecorationSet {
   const builder = new RangeSetBuilder<Decoration>()
   for (const { from, to } of view.visibleRanges) {
@@ -21,6 +29,7 @@ function buildDecorations(view: EditorView): DecorationSet {
     while ((m = re.exec(text))) {
       const start = from + m.index
       const end = start + m[0].length
+      if (inCode(view, start)) continue
       if (m[4]) {
         builder.add(start, end, commentMark)
         continue
@@ -53,7 +62,7 @@ const stellarTagHighlight = ViewPlugin.fromClass(
       this.decorations = buildDecorations(view)
     }
     update(u: ViewUpdate) {
-      if (u.docChanged || u.viewportChanged) this.decorations = buildDecorations(u.view)
+      if (u.docChanged || u.viewportChanged || syntaxTree(u.startState) !== syntaxTree(u.state)) this.decorations = buildDecorations(u.view)
     }
   },
   { decorations: (v) => v.decorations },

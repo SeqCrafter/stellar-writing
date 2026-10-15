@@ -201,8 +201,71 @@ function extractCodeBlocks(src: string, store: string[], mermaid = false) {
   return out.join('\n')
 }
 
+// 行内代码占位：私有区字符，Markdown 原样保留，不会被当成 HTML 块
+const INLINE_CODE = (n: number) => `\uE000${n}\uE001`
+const INLINE_CODE_RE = /\uE000(\d+)\uE001/g
+
 function restoreCodeBlocks(html: string, store: string[]) {
-  return html.replace(/(?:<p>)?<pre data-sw-code="(\d+)"><\/pre>(?:<\/p>)?/g, (_, n) => store[Number(n)] ?? '')
+  return html
+    .replace(/(?:<p>)?<pre data-sw-code="(\d+)"><\/pre>(?:<\/p>)?/g, (_, n) => store[Number(n)] ?? '')
+    .replace(INLINE_CODE_RE, (_, n) => store[Number(n)] ?? '')
+}
+
+/**
+ * 行内代码里的 {% %} 按代码原样显示，不当作标签执行。
+ * 只替换含 {% 的代码段，其余行内代码仍交给 Markdown 渲染器。
+ */
+function protectInlineCode(src: string, store: string[]) {
+  let out = ''
+  let i = 0
+  while (i < src.length) {
+    const ch = src[i]
+    if (ch === '\\' && src[i + 1] === '`') {
+      out += src.slice(i, i + 2)
+      i += 2
+      continue
+    }
+    if (ch !== '`') {
+      out += ch
+      i++
+      continue
+    }
+    let n = 1
+    while (src[i + n] === '`') n++
+    // 找到长度完全相同的结束反引号串，且不跨越空行
+    let j = i + n
+    let close = -1
+    while (j < src.length) {
+      if (src[j] === '\n' && /^\n[ \t]*\n/.test(src.slice(j))) break
+      if (src[j] === '`') {
+        let m = 1
+        while (src[j + m] === '`') m++
+        if (m === n) {
+          close = j
+          break
+        }
+        j += m
+        continue
+      }
+      j++
+    }
+    if (close < 0) {
+      out += src.slice(i, i + n)
+      i += n
+      continue
+    }
+    const raw = src.slice(i + n, close)
+    if (raw.includes('{%')) {
+      let code = raw.replace(/\n/g, ' ')
+      if (/^ .*[^ ].* $/.test(code)) code = code.slice(1, -1)
+      store.push(`<code>${escapeText(code)}</code>`)
+      out += INLINE_CODE(store.length - 1)
+    } else {
+      out += src.slice(i, close + n)
+    }
+    i = close + n
+  }
+  return out
 }
 
 // ---------------- 标签 ----------------
@@ -364,7 +427,7 @@ export function renderStellar(source: string, language = 'zh-CN'): RenderResult 
 
   // 1. 代码块（保留 front matter 占位行，保证行号对应）
   const fmPadding = '\n'.repeat(fm.lines)
-  let body = extractCodeBlocks(fm.body, codeStore, renderOptions.diagrams !== null)
+  let body = protectInlineCode(extractCodeBlocks(fm.body, codeStore, renderOptions.diagrams !== null), codeStore)
 
   // 2. 顶层标签 -> 占位
   const outputs: string[] = []
