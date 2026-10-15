@@ -1,5 +1,7 @@
 # Stellar Writing
 
+![](./screenshot.jpg)
+
 为 [Hexo Stellar](https://github.com/xaoxuu/hexo-theme-stellar) 主题打造的实时预览博客编辑器：左边写 Markdown 和 Stellar 标签，右边立刻看到文章在博客里的样子。
 
 ## 快速开始
