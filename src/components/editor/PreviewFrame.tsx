@@ -2,6 +2,20 @@
 
 import { useEffect, useImperativeHandle, useRef, type Ref } from 'react'
 import { FONT_STYLESHEETS } from '@/lib/fonts'
+import type { RenderOptions } from '@/lib/stellar/render'
+import stellarConfig from '@/lib/stellar/generated/config.json'
+
+// 与 features.math / features.diagrams 的资源地址一致
+const ASSETS = {
+  katexCss: stellarConfig.features.math.katex.css,
+  mathjaxJs: stellarConfig.features.math.mathjax.js,
+  mermaidJs: stellarConfig.features.diagrams.mermaid.js,
+}
+
+type PreviewWindow = Window & {
+  __swHydrate?: (el: Element) => void
+  __swEnhance?: (el: Element, opts: unknown) => Promise<unknown>
+}
 
 export type PreviewTheme = 'light' | 'dark'
 
@@ -15,30 +29,42 @@ const SHELL = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><me
 ${FONT_STYLESHEETS.map((href) => `<link rel="stylesheet" href="${href.replace(/&/g, '&amp;')}">`).join('')}
 <link rel="stylesheet" href="/stellar/stellar.css"><link rel="stylesheet" href="/stellar/stellar-icons.css"><link rel="stylesheet" href="/stellar/preview-extra.css">
 <script src="/stellar/preview-runtime.js"></script></head>
-<body data-page-type="content" data-page-layout="post" data-article-style="tech"><div class="site-shell" id="start" data-regions=""><div class="site-workspace"><main class="site-main" id="main"><div id="sw-root"></div></main></div></div></body></html>`
+<body data-page-type="content" data-page-layout="post"><div class="site-shell" id="start" data-regions=""><div class="site-workspace"><main class="site-main" id="main"><div id="sw-root"></div></main></div></div></body></html>`
 
 interface Props {
   html: string
   theme: PreviewTheme
+  render: RenderOptions
+  articleStyle: string
   ref?: Ref<PreviewHandle>
 }
 
-export function PreviewFrame({ html, theme, ref }: Props) {
+export function PreviewFrame({ html, theme, render, articleStyle, ref }: Props) {
   const frame = useRef<HTMLIFrameElement>(null)
   const ready = useRef(false)
-  const pending = useRef({ html, theme })
+  const pending = useRef({ html, theme, render, articleStyle })
+  const applied = useRef({ html: '', theme: '' })
+  const enhanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    pending.current = { html, theme }
+    pending.current = { html, theme, render, articleStyle }
     if (ready.current) apply()
-  }, [html, theme])
+  }, [html, theme, render, articleStyle])
+
+  useEffect(() => () => {
+    if (enhanceTimer.current) clearTimeout(enhanceTimer.current)
+  }, [])
 
   function apply() {
     const doc = frame.current?.contentDocument
     const root = doc?.getElementById('sw-root')
     if (!doc || !root) return
-    doc.documentElement.setAttribute('data-theme', pending.current.theme)
-    if (root.innerHTML !== pending.current.html) {
+    const next = pending.current
+    doc.documentElement.setAttribute('data-theme', next.theme)
+    doc.body.setAttribute('data-article-style', next.articleStyle)
+    // 主题变化时 Mermaid 需要按新配色重绘，所以也重建内容
+    if (applied.current.html !== next.html || applied.current.theme !== next.theme) {
+      applied.current = { html: next.html, theme: next.theme }
       // 保留滚动位置与已展开的折叠块
       const open = Array.from(root.querySelectorAll('details[open]')).map((d) => d.querySelector('summary')?.textContent ?? '')
       const activeTabs = Array.from(root.querySelectorAll('.tag-plugin.tabs')).map((t) =>
@@ -59,8 +85,13 @@ export function PreviewFrame({ html, theme, ref }: Props) {
         tabs.forEach((x, k) => x.classList.toggle('active', k === idx))
         panes.forEach((x, k) => x.classList.toggle('active', k === idx))
       })
-      const win = frame.current?.contentWindow as (Window & { __swHydrate?: (el: Element) => void }) | null
+      const win = frame.current?.contentWindow as PreviewWindow | null
       win?.__swHydrate?.(root)
+      // MathJax 排版与 Mermaid 绘图较慢，停止输入片刻后再执行
+      if (enhanceTimer.current) clearTimeout(enhanceTimer.current)
+      const opts = { ...next.render, ...ASSETS }
+      if (opts.math === 'katex') win?.__swEnhance?.(root, opts)
+      else if (opts.math || opts.diagrams) enhanceTimer.current = setTimeout(() => win?.__swEnhance?.(root, opts), 300)
     }
   }
 

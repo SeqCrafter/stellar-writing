@@ -75,6 +75,93 @@
     })
   }
 
+
+  // ---------- 公式与图表：与 runtime/extensions/mathjax.js、diagrams.js 相同的加载与参数 ----------
+  var assets = {}
+  function loadScript(src) {
+    if (!assets[src]) {
+      assets[src] = new Promise(function (resolve, reject) {
+        var s = document.createElement('script')
+        s.src = src
+        s.onload = resolve
+        s.onerror = function () { delete assets[src]; reject(new Error('无法加载 ' + src)) }
+        document.head.appendChild(s)
+      })
+    }
+    return assets[src]
+  }
+  function loadCss(href) {
+    if (assets[href]) return
+    assets[href] = true
+    var l = document.createElement('link')
+    l.rel = 'stylesheet'
+    l.href = href
+    document.head.appendChild(l)
+  }
+
+  var mermaidCache = {}
+  var mermaidSeq = 0
+
+  async function typesetMath(root, opts) {
+    if (opts.math === 'katex') {
+      loadCss(opts.katexCss)
+      return
+    }
+    if (opts.math !== 'mathjax') return
+    if (!window.MathJax || typeof window.MathJax.typesetPromise !== 'function') {
+      window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }, startup: { typeset: false } }
+      await loadScript(opts.mathjaxJs)
+    }
+    if (window.MathJax.startup && window.MathJax.startup.promise) await window.MathJax.startup.promise
+    if (window.MathJax.typesetClear) window.MathJax.typesetClear([root])
+    await window.MathJax.typesetPromise([root])
+    root.querySelectorAll('mjx-container').forEach(function (n) { if (n.parentElement) n.parentElement.classList.add('has-jax') })
+  }
+
+  async function renderDiagrams(root, opts) {
+    if (!opts.diagrams) return
+    var nodes = Array.prototype.slice.call(root.querySelectorAll('.mermaid:not([data-processed])'))
+    if (nodes.length === 0) return
+    await loadScript(opts.mermaidJs)
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark'
+    var theme = dark ? 'dark' : (opts.diagrams.theme || 'neutral')
+    var todo = []
+    nodes.forEach(function (node) {
+      var key = theme + '\n' + node.textContent
+      node.setAttribute('data-sw-key', key)
+      if (mermaidCache[key]) {
+        node.innerHTML = mermaidCache[key]
+        node.setAttribute('data-processed', 'true')
+      } else {
+        todo.push(node)
+      }
+    })
+    if (todo.length === 0) return
+    var seq = ++mermaidSeq
+    window.mermaid.initialize({
+      startOnLoad: false,
+      theme: theme,
+      logLevel: 3,
+      flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'linear' },
+      gantt: { axisFormat: '%Y/%m/%d' },
+      sequence: { actorMargin: 50 }
+    })
+    try {
+      await window.mermaid.run({ nodes: todo, suppressErrors: true })
+    } catch (e) {}
+    if (seq !== mermaidSeq) return
+    todo.forEach(function (node) {
+      if (node.querySelector('svg')) mermaidCache[node.getAttribute('data-sw-key')] = node.innerHTML
+    })
+  }
+
+  window.__swEnhance = function (root, opts) {
+    return Promise.all([
+      typesetMath(root, opts).catch(function (e) { console.warn(e) }),
+      renderDiagrams(root, opts).catch(function (e) { console.warn(e) })
+    ])
+  }
+
   window.__swHydrate = hydrate
   if (document.readyState !== 'loading') hydrate(document)
   else document.addEventListener('DOMContentLoaded', function () { hydrate(document) })

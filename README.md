@@ -14,7 +14,7 @@ bun run dev
 ## 功能
 
 - **原版渲染**：预览直接运行 Stellar 自己的标签插件源码（45 个块级与行内标签），样式由主题原版 Stylus 编译而来，结构与 Hexo 生成的文章页一致。
-- **Front Matter**：`title`、`date`、`updated`、`categories`、`tags`、`description`、`cover` 会渲染为文章横幅与标签栏。
+- **Front Matter**：与 Stellar 相同的字段规则——`title`、`date`、`updated`、`categories`、`tags`、`cover`、`banner.enabled/background/avatar/headline/tagline`、`article.ai_label`、`article.style`、`render.math`（`false`/`katex`/`mathjax`）、`render.diagrams`（`false`/`mermaid`/参数对象）。`description` 只用于博客列表简介和 SEO，文章页不显示。
 - **标签库**：顶栏「插入标签」或 `⌘/` 打开，可搜索、预览语法，回车插入片段，Tab 在占位之间跳转。
 - **自动补全**：在编辑器里输入 `{%` 弹出标签列表。
 - **语法着色**：标签名、`key:` 参数、`<!-- tab -->` 等分隔注释单独着色。
@@ -46,7 +46,7 @@ bun run sync:stellar
 ## 已知限制
 
 - 友链、GitHub 卡片、远程 Markdown、评分投票等需要站点运行时请求数据的标签，预览中只显示占位说明。
-- 数学公式与 Mermaid 在主题中默认关闭，预览暂不渲染。
+- KaTeX 在编辑器里直接渲染，相当于博客使用支持 KaTeX 的 Markdown 渲染器；Stellar 本身只负责加载 KaTeX 样式。Mermaid 预览会把 ```mermaid 代码块转成 `<pre class="mermaid">`，博客端需要在 Hexo 的 `highlight.exclude_languages` 里排除 mermaid，或直接写 `<pre class="mermaid">`。
 - `{% toc wiki:xxx %}` 依赖站点的 Wiki 数据，单篇文章编辑器中无法渲染。
 
 ## Docker 部署

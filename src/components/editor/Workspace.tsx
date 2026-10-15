@@ -2,7 +2,7 @@
 
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
 import { renderStellar } from '@/lib/stellar/render'
-import { articleBanner, articleTags, readingMinutes } from '@/lib/stellar/document'
+import { articleBanner, articleStyle, articleTags, readingMinutes } from '@/lib/stellar/document'
 import type { TagSnippet } from '@/lib/stellar/catalog'
 import { SAMPLE_POST } from '@/lib/sample'
 import { CodeEditor, type EditorHandle } from './CodeEditor'
@@ -284,7 +284,7 @@ export default function Workspace() {
         </section>
         <div className="divider" onPointerDown={startDrag} onDoubleClick={() => setSplit(0.5)} role="separator" aria-orientation="vertical" title="拖动调整宽度，双击还原" />
         <section className="pane pane-preview" aria-label="Stellar 预览" data-theme={theme}>
-          <PreviewFrame ref={preview} html={previewHtml} theme={theme} />
+          <PreviewFrame ref={preview} html={previewHtml} theme={theme} render={result.render} articleStyle={articleStyle(result.frontMatter)} />
         </section>
       </div>
 

@@ -9,6 +9,8 @@ import { splitTagArgs } from './args'
 import { createContext, type StellarContext } from './context'
 import { highlightBlock } from './highlight'
 import icons from './generated/icons.json'
+import stellarConfig from './generated/config.json'
+import katex from 'katex'
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const vendorRegistry: VendorEntry[] = require('./vendor/registry.js')
 
@@ -35,6 +37,38 @@ export interface RenderResult {
   body: string
   wordCount: number
   errors: string[]
+  render: RenderOptions
+}
+
+export interface RenderOptions {
+  /** 数学公式：katex 在编辑器内渲染（相当于博客的 KaTeX Markdown 渲染器），mathjax 交给预览页客户端排版 */
+  math: 'katex' | 'mathjax' | null
+  /** Mermaid 参数（theme 等），null 表示不渲染 */
+  diagrams: Record<string, unknown> | null
+}
+
+/**
+ * 与 scripts/lib/contribution-registry.js 相同的选择规则：
+ * render.math 省略时沿用 features.math.provider；
+ * render.diagrams 为 false 关闭、字符串指定 provider、对象视为 mermaid 并合并参数，省略时沿用 features.diagrams.provider。
+ */
+export function resolveRenderOptions(fm: FrontMatter): RenderOptions {
+  const render = (fm.render && typeof fm.render === 'object' ? fm.render : {}) as Record<string, unknown>
+  const features = (stellarConfig as { features: { math: { provider: string | null }; diagrams: { provider: string | null; mermaid: Record<string, unknown> } } }).features
+  const mathValue = render.math === false ? null : (render.math as string | undefined) || features.math.provider
+  const math = mathValue === 'katex' || mathValue === 'mathjax' ? mathValue : null
+  const override = render.diagrams
+  const provider =
+    override === false ? null : typeof override === 'string' ? override : override && typeof override === 'object' ? 'mermaid' : features.diagrams.provider
+  let diagrams: Record<string, unknown> | null = null
+  if (provider === 'mermaid') {
+    const { js: _js, ...base } = features.diagrams.mermaid
+    void _js
+    const own = override && typeof override === 'object' ? { ...(override as Record<string, unknown>) } : {}
+    delete own.js
+    diagrams = { ...base, ...own }
+  }
+  return { math, diagrams }
 }
 
 // 与 Hexo PostRenderEscape 相同的占位形式：<!--\uFFFC{n}-->。
@@ -62,8 +96,47 @@ function unescapeText(s: string) {
 
 // ---------------- Markdown ----------------
 
-function createMarked() {
+function renderTex(tex: string, display: boolean, provider: 'katex' | 'mathjax') {
+  if (provider === 'mathjax') {
+    // 原样交给 MathJax（delimiters 与 runtime/extensions/mathjax.js 一致），只做 HTML 转义
+    return display ? `<p>$$${escapeText(tex)}$$</p>\n` : `$${escapeText(tex)}$`
+  }
+  try {
+    return katex.renderToString(tex, { displayMode: display, throwOnError: false, output: 'htmlAndMathml' }) + (display ? '\n' : '')
+  } catch (e) {
+    return `<span class="sw-tag-error">${escapeText((e as Error).message)}</span>`
+  }
+}
+
+function createMarked(math: RenderOptions['math'] = null) {
   const marked = new Marked({ gfm: true, breaks: true })
+  if (math) {
+    // $$…$$ 块级公式与 $…$ 行内公式；先于 Markdown 解析，避免 _ * 被当成强调
+    marked.use({
+      extensions: [
+        {
+          name: 'mathBlock',
+          level: 'block',
+          start: (src: string) => src.match(/\$\$/)?.index,
+          tokenizer(src: string) {
+            const m = /^\$\$([\s\S]+?)\$\$[ \t]*(?:\n+|$)/.exec(src)
+            if (m) return { type: 'mathBlock', raw: m[0], text: m[1].trim() }
+          },
+          renderer: (token) => renderTex(token.text as string, true, math),
+        },
+        {
+          name: 'mathInline',
+          level: 'inline',
+          start: (src: string) => src.indexOf('$') >= 0 ? src.indexOf('$') : undefined,
+          tokenizer(src: string) {
+            const m = /^\$\$([^$]+?)\$\$|^\$(?!\s)((?:\\.|[^$\\\n])+?)(?<!\s)\$(?!\d)/.exec(src)
+            if (m) return { type: 'mathInline', raw: m[0], text: (m[1] ?? m[2]).trim(), display: m[1] !== undefined }
+          },
+          renderer: (token) => renderTex(token.text as string, Boolean(token.display), math),
+        },
+      ],
+    })
+  }
   const usedIds = new Map<string, number>()
   marked.use({
     renderer: {
@@ -85,7 +158,7 @@ function createMarked() {
 
 // ---------------- 代码块 ----------------
 
-function extractCodeBlocks(src: string, store: string[]) {
+function extractCodeBlocks(src: string, store: string[], mermaid = false) {
   const lines = src.split('\n')
   const out: string[] = []
   for (let i = 0; i < lines.length; i++) {
@@ -114,7 +187,12 @@ function extractCodeBlocks(src: string, store: string[]) {
         caption = rest.join(' ')
       }
     }
-    store.push(highlightBlock(code, { lang, caption, url, linkText }))
+    if (mermaid && lang === 'mermaid') {
+      // 输出 Stellar diagrams 扩展消费的 .mermaid 节点
+      store.push(`<pre class="mermaid">${escapeText(code)}</pre>`)
+    } else {
+      store.push(highlightBlock(code, { lang, caption, url, linkText }))
+    }
     out.push(`${indent}<pre data-sw-code="${store.length - 1}"></pre>`)
     // 保持行数一致，方便编辑器与预览按行同步
     for (let k = i + 1; k <= Math.min(j, lines.length - 1); k++) out.push('')
@@ -242,8 +320,9 @@ export function countWords(text: string) {
 export function renderStellar(source: string, language = 'zh-CN'): RenderResult {
   const errors: string[] = []
   const fm = parseFrontMatter(source)
+  const renderOptions = resolveRenderOptions(fm.data)
   const codeStore: string[] = []
-  const marked = createMarked()
+  const marked = createMarked(renderOptions.math)
   const md = (text: string) => restoreCodeBlocks(marked.parse(text, { async: false }) as string, codeStore)
   const ctx = createContext(md, language)
   const registry = buildRegistry(ctx)
@@ -285,7 +364,7 @@ export function renderStellar(source: string, language = 'zh-CN'): RenderResult 
 
   // 1. 代码块（保留 front matter 占位行，保证行号对应）
   const fmPadding = '\n'.repeat(fm.lines)
-  let body = extractCodeBlocks(fm.body, codeStore)
+  let body = extractCodeBlocks(fm.body, codeStore, renderOptions.diagrams !== null)
 
   // 2. 顶层标签 -> 占位
   const outputs: string[] = []
@@ -326,6 +405,7 @@ export function renderStellar(source: string, language = 'zh-CN'): RenderResult 
     html,
     frontMatter: fm.data,
     frontMatterError: fm.error,
+    render: renderOptions,
     body: fm.body,
     wordCount: countWords(fm.body),
     errors,
