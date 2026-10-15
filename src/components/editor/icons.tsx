@@ -86,6 +86,12 @@ const PATHS: Record<string, React.ReactNode> = {
       <circle cx="12" cy="12" r="2.8" />
     </>
   ),
+  markdown: (
+    <>
+      <rect x="2.5" y="5.5" width="19" height="13" rx="2.5" />
+      <path d="M6 15.5v-7l2.5 3 2.5-3v7M15.5 8.5v6.5M13.2 12.8l2.3 2.4 2.3-2.4" />
+    </>
+  ),
   warn: <path d="M12 4.5l8.5 15h-17zM12 10v4M12 16.8v.2" />,
 }
 

@@ -170,14 +170,27 @@ export default function Workspace() {
     setNotice(`已导出 ${name}`)
   }
 
-  async function copyHtml() {
+  async function copyText(text: string, done: string) {
     try {
-      await navigator.clipboard.writeText(result.html)
-      setNotice('文章 HTML 已复制')
+      await navigator.clipboard.writeText(text)
+      setNotice(done)
     } catch {
-      setNotice('复制失败：浏览器没有授予剪贴板权限')
+      // 没有剪贴板权限（如非 HTTPS 部署）时退回到选中复制
+      const area = document.createElement('textarea')
+      area.value = text
+      area.setAttribute('readonly', '')
+      area.style.position = 'fixed'
+      area.style.opacity = '0'
+      document.body.appendChild(area)
+      area.select()
+      const ok = document.execCommand('copy')
+      area.remove()
+      setNotice(ok ? done : '复制失败：浏览器没有授予剪贴板权限')
     }
   }
+
+  const copyMarkdown = () => copyText(source, '文章 Markdown 已复制')
+  const copyHtml = () => copyText(result.html, '文章 HTML 已复制')
 
   function openFile(file: File) {
     file.text().then((text) => {
@@ -241,6 +254,7 @@ export default function Workspace() {
             <div className="menu-pop" onClick={(e) => (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open')}>
               <button onClick={() => fileInput.current?.click()}><Icon name="upload" />打开 .md 文件</button>
               <button onClick={download}><Icon name="download" />导出 .md 文件</button>
+              <button onClick={copyMarkdown}><Icon name="markdown" />复制文章 Markdown</button>
               <button onClick={copyHtml}><Icon name="copy" />复制文章 HTML</button>
               <hr />
               <button onClick={() => setSync(!sync)}><Icon name={sync ? 'check' : 'blank'} />滚动同步</button>
