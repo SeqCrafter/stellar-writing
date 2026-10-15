@@ -48,15 +48,20 @@ bun run sync:stellar
 ## 已知限制
 
 - 友链、GitHub 卡片、远程 Markdown、评分投票等需要站点运行时请求数据的标签，预览中只显示占位说明。
-- KaTeX 在编辑器里直接渲染，相当于博客使用支持 KaTeX 的 Markdown 渲染器；Stellar 本身只负责加载 KaTeX 样式。Mermaid 预览会把 ```mermaid 代码块转成 `<pre class="mermaid">`，博客端需要在 Hexo 的 `highlight.exclude_languages` 里排除 mermaid，或直接写 `<pre class="mermaid">`。
+- KaTeX 在编辑器里直接渲染，相当于博客使用支持 KaTeX 的 Markdown 渲染器；Stellar 本身只负责加载 KaTeX 样式。Mermaid 预览会把 ```mermaid 代码块转成 `<pre class="mermaid">`，博客端需要在 Hexo 的 `highlight.exclude_languages`里排除 mermaid，或直接写`<pre class="mermaid">`。
 - `{% toc wiki:xxx %}` 依赖站点的 Wiki 数据，单篇文章编辑器中无法渲染。
+- 无法用于复制到公众号做排版工具，以为公众号是内联样式，改起来太麻烦。
 
 ## Docker 部署
 
 推送到 GitHub 的 `main`/`master` 分支（或打 `v*` 标签）后，仓库里的 `.github/workflows/docker.yml` 会构建镜像并发布到 GitHub Container Registry，标签为 `latest`、提交短 SHA，以及版本标签对应的 `x.y.z`、`x.y`。镜像同时提供 amd64 与 arm64。
 
 ```bash
-docker run -d --name stellar-writing -p 3000:3000 ghcr.io/<你的 GitHub 用户名>/<仓库名>:latest
+docker run -d --name stellar-writing -p 3000:3000 ghcr.io/seqcrafter/stellar-writing:latest
 ```
 
-镜像基于 Next.js 的 standalone 输出，运行时只有 Node 与构建产物。首次发布后，GHCR 上的包默认是私有的，可以在 GitHub 的 Packages 设置里改成公开，或者在服务器上用 `docker login ghcr.io` 登录后再拉取。
+镜像基于 Next.js 的 standalone 输出，运行时只有 Node 与构建产物。
+
+## EdgeOne 部署
+
+直接克隆仓库一键部署
